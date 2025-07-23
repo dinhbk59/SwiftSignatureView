@@ -327,11 +327,6 @@ open class LegacySwiftSignatureView: UIView, UIGestureRecognizerDelegate, ISigna
         currentPath.addArc(withCenter: point, radius: pointSize, startAngle: 0, endAngle: .pi * 2, clockwise: true)
         currentPath.stroke()
         currentPath.fill()
-//        currentPath.lineWidth = pointSize
-//        currentPath.lineCapStyle = CGLineCap.round
-//        currentPath.move(to: point)
-//        currentPath.addLine(to: point)
-//        currentPath.stroke()
     }
 
     fileprivate func redraw() {
@@ -341,6 +336,9 @@ open class LegacySwiftSignatureView: UIView, UIGestureRecognizerDelegate, ISigna
               signature = UIGraphicsGetImageFromCurrentImageContext()
         }
         signature?.draw(in: rect)
+        let signatureColor = strokeColor.withAlphaComponent(strokeAlpha)
+        signatureColor.setFill()
+        signatureColor.setStroke()
         currentPath.stroke()
         currentPath.fill()
         signature = UIGraphicsGetImageFromCurrentImageContext()
