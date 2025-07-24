@@ -25,6 +25,7 @@ public protocol ISignatureView: AnyObject {
     func undo()
     func redo()
     func getCroppedSignature() -> UIImage?
+    func setStrokeWidth(_ width: CGFloat)
 }
 
 extension ISignatureView {
@@ -166,6 +167,10 @@ open class SwiftSignatureView: UIView, ISignatureView {
     public func redo() {
         instance.redo()
     }
+    
+    public func setStrokeWidth(_ width: CGFloat) {
+        instance.setStrokeWidth(width)
+    }
 
     /**
     Get a cropped version of the signature.
@@ -215,6 +220,3 @@ open class SwiftSignatureView: UIView, ISignatureView {
 
 }
 
-#Preview {
-    SwiftSignatureView(frame: CGRect(x: 0, y: 0, width: 300, height: 200))
-}

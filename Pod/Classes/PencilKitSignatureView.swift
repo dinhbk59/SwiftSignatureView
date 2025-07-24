@@ -87,6 +87,9 @@ open class PencilKitSignatureView: UIView, ISignatureView {
         }
     }
     
+    public func setStrokeWidth(_ width: CGFloat) {
+    }
+    
     open func getCroppedSignature() -> UIImage? {
         return autoreleasepool {
             var image: UIImage?

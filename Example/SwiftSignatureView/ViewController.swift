@@ -33,8 +33,24 @@ final class ViewController: UIViewController {
     }
 
     @IBAction func didTapRefreshCroppedSignature() {
-        croppedSignatureView.image = signatureView.getCroppedSignature()
-        print("fullRender \(croppedSignatureView.image?.size ?? CGSize.zero)")
+//        croppedSignatureView.image = signatureView.getCroppedSignature()
+//        print("fullRender \(croppedSignatureView.image?.size ?? CGSize.zero)")
+        let randomNumber = Int.random(in: 0..<10)
+        let choice = randomNumber % 3
+        switch choice {
+            case 0:
+                signatureView.strokeColor = .red
+                signatureView.setStrokeWidth(2)
+            case 1:
+                signatureView.strokeColor = .green
+                signatureView.setStrokeWidth(3)
+            case 2:
+                signatureView.strokeColor = .blue
+                signatureView.setStrokeWidth(4)
+            default:
+                signatureView.strokeColor = .black
+                signatureView.setStrokeWidth(1)
+        }
     }
 
 }
