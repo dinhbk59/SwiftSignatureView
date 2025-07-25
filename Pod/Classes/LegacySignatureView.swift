@@ -105,11 +105,15 @@ open class LegacySwiftSignatureView: UIView, UIGestureRecognizerDelegate, ISigna
     
     open func undo() {
         if cacheIndex > 0 { cacheIndex -= 1 }
+        delegate?.canUndo(cacheIndex != 0)
+        delegate?.canRedo(cacheIndex < cachedStrokes.count)
         redrawAllStrokes()
     }
     
     open func redo() {
         if cacheIndex < cachedStrokes.count { cacheIndex += 1 }
+        delegate?.canRedo(cacheIndex != cachedStrokes.count)
+        delegate?.canUndo(cacheIndex > 0)
         redrawAllStrokes()
     }
     
@@ -118,6 +122,8 @@ open class LegacySwiftSignatureView: UIView, UIGestureRecognizerDelegate, ISigna
         cacheIndex = 0
         currentPath.removeAllPoints()
         signature = nil
+        delegate?.canRedo(false)
+        delegate?.canUndo(false)
     }
     
         // MARK: - Gesture handlers
@@ -208,6 +214,7 @@ open class LegacySwiftSignatureView: UIView, UIGestureRecognizerDelegate, ISigna
             cachedStrokes = Array(cachedStrokes.prefix(cacheIndex))
         }
         cachedStrokes.append(stroke)
+        delegate?.canUndo(!cachedStrokes.isEmpty)
         cacheIndex = cachedStrokes.count
     }
     

@@ -56,6 +56,14 @@ final class ViewController: UIViewController {
 }
 
 extension  ViewController: SwiftSignatureViewDelegate {
+    func canUndo(_ canUndo: Bool) {
+        print("can undo \(canUndo)")
+    }
+    
+    func canRedo(_ canRedo: Bool) {
+        print("can redo \(canRedo)")
+    }
+    
 
     func swiftSignatureViewDidDrawGesture(_ view: ISignatureView, _ tap: UIGestureRecognizer) {
         print("swiftSignatureViewDidDrawGesture")

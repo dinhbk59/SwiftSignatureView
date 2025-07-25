@@ -10,4 +10,6 @@ import UIKit
 public protocol SwiftSignatureViewDelegate: AnyObject {
     func swiftSignatureViewDidDrawGesture(_ view: ISignatureView, _ tap: UIGestureRecognizer)
     func swiftSignatureViewDidDraw(_ view: ISignatureView)
+    func canUndo(_ canUndo: Bool)
+    func canRedo(_ canRedo: Bool)
 }
